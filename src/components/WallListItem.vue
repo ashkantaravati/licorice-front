@@ -6,7 +6,7 @@
             <div>{{ wall.buddyCount }} Buddies Joined</div>
         </div>
         <div>
-            <LButton @click="$router.push(`/wall/${wall.id}`)" secondary>Enter</LButton>
+            <LButton @click="$router.push({ name: 'wallOverview', params: { wallId: wall.id } })" secondary>Enter</LButton>
         </div>
     </div>
 </template>
@@ -17,3 +17,4 @@ import LIdenticon from './LIdenticon.vue';
 
 const props = defineProps(["wall"]);
 </script>
+

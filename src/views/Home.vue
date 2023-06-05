@@ -14,7 +14,7 @@
                 </div>
                 <div class="flex justify-center">
 
-                    <LButton @click="$router.push('/new')" class="flex self-stretch">Create a Wall</LButton>
+                    <LButton @click="$router.push({ name: 'createWall' })" class="flex self-stretch">Create a Wall</LButton>
                 </div>
             </section>
         </div>
@@ -26,6 +26,7 @@
         </section>
     </div>
 </template>
+
 <script setup>
 import { ref } from 'vue';
 import WallListItem from '../components/WallListItem.vue';

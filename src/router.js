@@ -1,17 +1,46 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-const Wall = () => import("./views/Wall.vue");
-const Home = () => import("./views/Home.vue");
-const JoinWall = () => import("./views/JoinWall.vue");
-const NewWall = () => import("./views/NewWall.vue");
-const PutMessage = () => import("./views/PutMessage.vue");
-
 const routes = [
-  { path: "/", component: Home },
-  { path: "/wall/:id", component: Wall },
-  { path: "/new", component: NewWall },
-  { path: "/join/:id", component: JoinWall },
-  { path: "/put/:id", component: PutMessage },
+  { path: "/", name: "home", component: () => import("./views/Home.vue") },
+
+  {
+    path: "/new",
+    name: "createWall",
+    component: () => import("./views/CreateWall.vue"),
+  },
+  {
+    path: "/wall/:wallId",
+    component:()=>import("./views/Wall.vue"),
+    children:[
+      {
+        path: "overview",
+        name: "wallOverview",
+        component: () => import("./views/WallOverview.vue"),
+      },
+      {
+        path: "join",
+        name: "joinWall",
+        component: () => import("./views/JoinWall.vue"),
+      },
+    ]
+  },
+  {
+    path: "/cube/:cubeId",
+    component: () => import("./views/Cube.vue"),
+    children:[
+      {
+        path: "inside",
+        name: "insideCube",
+        component: () => import("./views/CubeInside.vue"),
+      },
+      {
+        path: "put",
+        name: "putCard",
+        component: () => import("./views/PutCard.vue"),
+      },
+    ]
+  },
+
 
 ];
 
@@ -20,4 +49,4 @@ const router = createRouter({
   routes,
 });
 
-export {router};
+export { router };

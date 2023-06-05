@@ -6,7 +6,7 @@
             <div>Received {{ buddy.cardCount }} Cards</div>
         </div>
         <div>
-            <LButton @click="$router.push(`/put/${buddy.id}`)" secondary>Put Card</LButton>
+            <LButton @click="$router.push({ name: 'putCard', params: { cubeId: buddy.id } })" secondary>Put Card</LButton>
         </div>
     </div>
 </template>
@@ -17,3 +17,4 @@ import LIdenticon from './LIdenticon.vue';
 
 const props = defineProps(["buddy"]);
 </script>
+
