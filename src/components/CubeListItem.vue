@@ -7,6 +7,9 @@
         </div>
         <div>
             <LButton @click="$router.push({ name: 'putCard', params: { cubeId: cube.id } })" secondary>Put Card</LButton>
+            <LButton link @click="$router.push({ name: 'insideCube', params: { cubeId: cube.id } })">
+                Look Inside
+            </LButton>
         </div>
     </div>
 </template>

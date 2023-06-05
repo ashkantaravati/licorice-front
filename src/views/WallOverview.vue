@@ -21,6 +21,7 @@ import CubeListItem from '../components/CubeListItem.vue'
 
 
 const wall = ref({
+    id:'qweqw-qwqw-qw',
     title: "Harmony Gang", cubes: [
         {
             id: "asd-qwerty-2",
