@@ -3,7 +3,7 @@
         <LIdenticon :text="wall.title"></LIdenticon>
         <div class="grow mx-2 ">
             <div class="text-lg font-semibold">{{ wall.title }}</div>
-            <div>{{ wall.buddyCount }} Buddies Joined</div>
+            <div>{{ wall.cubeCount }} Buddies Joined</div>
         </div>
         <div>
             <LButton @click="$router.push({ name: 'wallOverview', params: { wallId: wall.id } })" secondary>Enter</LButton>

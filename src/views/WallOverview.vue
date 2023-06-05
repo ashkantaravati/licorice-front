@@ -1,7 +1,7 @@
 <template lang="">
     <div>
         <LHeading>
-{{state.title}}'s Wall
+{{wall.title}}'s Wall
         </LHeading>
         <div class="flex justify-center">
 
@@ -10,18 +10,18 @@
             </LButton>
         </div>
         <div class="flex flex-col mt-3 ">
-                <BuddyListItem :buddy="buddy" v-for="buddy in state.buddies" :key="buddy.id" />
+                <CubeListItem :cube="cube" v-for="cube in wall.cubes" :key="cube.id" />
             </div>
 
     </div>
 </template>
 <script setup>
 import { ref } from 'vue';
-import BuddyListItem from '../components/BuddyListItem.vue'
+import CubeListItem from '../components/CubeListItem.vue'
 
 
-const state = ref({
-    title: "Harmony Gang", buddies: [
+const wall = ref({
+    title: "Harmony Gang", cubes: [
         {
             id: "asd-qwerty-2",
             name: "Ashkan T",

@@ -21,35 +21,41 @@
         <section>
             <LHeading>Public Walls</LHeading>
             <div class="flex flex-col lg:flex-row lg:space-x-3 mt-3 ">
-                <WallListItem :wall="wall" v-for="wall in state.publicWalls" :key="wall.id" />
+                <WallListItem :wall="wall" v-for="wall in publicWalls" :key="wall.id" />
             </div>
         </section>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import WallListItem from '../components/WallListItem.vue';
 import LButton from '../components/LButton.vue';
 import LTextBox from '../components/LTextBox.vue';
 import LHeading from '../components/LHeading.vue';
 
-const state = ref({
-    publicWalls: [{
+const getPublicWalls = () => {
+    // GET /walls/?isPublic=true
+    publicWalls.value = [{
         id: "xeq-Qweqe-1",
         title: "Harmony Gang 1",
-        buddyCount: 5,
+        cubeCount: 5,
     },
     {
         id: "asd-Qweqe-1",
         title: "Harmony Gang 2",
-        buddyCount: 5,
+        cubeCount: 5,
     },
     {
         id: "eqw-Qweqe-1",
         title: "Harmony Gang 3",
-        buddyCount: 5,
+        cubeCount: 5,
     }]
+}
+const publicWalls = ref([])
+
+onMounted(()=>{
+    getPublicWalls();
 })
 </script>
   
