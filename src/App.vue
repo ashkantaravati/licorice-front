@@ -8,7 +8,7 @@ import SiteHeader from './components/SiteHeader.vue'
       <SiteHeader/>
 
    </header>
-   <main class="h-fit px-2 py-5 bg-green-200">
+   <main class="h-fit px-2 py-5">
       <RouterView class="my-10" />
    </main>
 </template>

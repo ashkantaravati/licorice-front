@@ -1,6 +1,5 @@
 <template >
-  <div class="flex flex-col
-    ">
+  <div class="flex flex-col grow">
 
     <span v-if="label" class="">{{ label }}</span>
     <component v-model="value" :is="elementType" :placeholder="props.placeholder"

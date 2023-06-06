@@ -18,7 +18,7 @@ const elementType = computed(()=>{
   return 'button'
 })
 const classes = computed(() => ({
-  'py-1 px-6 rounded-lg':!props.link,
+  'my-2 mx-2 py-1 px-6 rounded-lg':!props.link,
   'disabled': props.disabled,
   'bg-yellow-500 text-gray-700': !props.link && !props.secondary,
   'bg-pink-600 text-white': props.secondary && !props.link,
@@ -27,7 +27,5 @@ const classes = computed(() => ({
 </script>
 
 <template>
-    <div>
-        <component :is="elementType" @click="$emit('click')" :class="['my-2 mx-2 font-light ',classes]"> <slot /></component>
-    </div>
+        <component :is="elementType" @click="$emit('click')" :class="[' font-light ',classes]"> <slot /></component>
 </template>

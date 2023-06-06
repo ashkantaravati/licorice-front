@@ -5,7 +5,7 @@
             <img class="" src="../assets/main-illust.svg" alt="">
             <section class="my-2">
                 <div class="flex">
-                    <LTextBox placeholder="#enter-wall-id"></LTextBox>
+                    <LTextBox class="self-stretch" placeholder="#enter-wall-id"></LTextBox>
                     <LButton secondary>Enter</LButton>
                 </div>
                 <div class="flex justify-center">
