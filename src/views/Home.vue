@@ -5,8 +5,8 @@
             <img class="" src="../assets/main-illust.svg" alt="">
             <section class="my-2">
                 <div class="flex">
-                    <LTextBox class="self-stretch" placeholder="#enter-wall-id"></LTextBox>
-                    <LButton secondary>Enter</LButton>
+                    <LTextBox v-model="wallKey" class="self-stretch" placeholder="#enter-wall-id"></LTextBox>
+                    <LButton secondary @click="$router.push({name:'wallOverview',params:{wallId:wallKey}})">Enter</LButton>
                 </div>
                 <div class="flex justify-center">
 
@@ -34,6 +34,7 @@ import LButton from '../components/LButton.vue';
 import LTextBox from '../components/LTextBox.vue';
 import LHeading from '../components/LHeading.vue';
 
+const wallKey = ref("")
 const getPublicWalls = () => {
     // GET /walls/?isPublic=true
     publicWalls.value = [{

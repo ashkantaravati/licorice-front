@@ -14,7 +14,7 @@
     </div>
     <div class="flex justify-center">
 
-<LButton @click="" class="flex self-stretch">Create</LButton>
+<LButton @click="submitCube" class="flex self-stretch">Create</LButton>
 </div>
     </div>
 </template>
@@ -27,6 +27,12 @@ const newCube = ref({
     passphrase:"",
     passphraseConfirmation:""
 
+});
+
+const submitCube = (function () {
+    // send POST request to the server
+    // if successful, navigate to wall.
+    router.push({name:"wallOverview",params:{wallId:1}});
 });
 </script>
 
