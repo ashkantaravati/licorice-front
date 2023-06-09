@@ -1,10 +1,10 @@
 <template lang="">
     <div>
-        <LHeading>
+
+        <template v-if="loaded">
+            <LHeading>
 {{wall.title}}'s Wall
         </LHeading>
-        <template v-if="loaded">
-
         <div class="flex justify-center">
 
             <LButton @click="$router.push({ name: 'joinWall' ,params:{ wallId: props.wallId }})">
@@ -34,7 +34,7 @@ import { api } from "../utils";
 const props = defineProps(["wallId"]);
 const wall = ref({})
 onMounted(() => {
-    api.getJSON(`/api/Walls/${props.wallId}`).then(result => wall.value = result).then(()=>loaded.value=true)
+    api.getJSON(`/api/Walls/${props.wallId}`).then(result => wall.value = result).then(() => loaded.value = true)
 })
 const loaded = ref(false);
 </script>

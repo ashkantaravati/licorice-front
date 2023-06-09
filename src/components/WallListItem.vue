@@ -7,7 +7,7 @@
             <div>{{ wall.cubeCount }} Buddies Joined</div>
         </div>
         <div>
-            <LButton @click="$router.push({ name: 'wallOverview', params: { wallId: wall.id } })" secondary>Enter</LButton>
+            <LButton @click="$router.push({ name: 'wallOverview', params: { wallId: wall.key } })" secondary>Enter</LButton>
         </div>
         </div>
    
