@@ -2,8 +2,7 @@
   <div class="flex flex-col grow">
 
     <span v-if="label" class="">{{ label }}</span>
-    <textarea v-model="value"
-      class="textarea grow my-2 py-2 px-4 text font-thin rounded-lg border-black border-solid border" :id="id"></textarea>
+    <textarea v-model="value" class="textarea rounded-lg border-black border-solid border grow my-2 py-2 px-4 text font-thin" :id="id"></textarea>
   </div>
 </template>
 <script setup>

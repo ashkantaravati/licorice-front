@@ -3,7 +3,7 @@
         <LHeading>
             Putting a card in {{name}}'s Cube
         </LHeading>
-        <Textarea v-model="cardContent" label="Your Message"></Textarea>
+        <LTextarea v-model="cardContent" label="Your Message"></LTextarea>
         <div class="flex justify-center">
 
             <LButton @click="submitCard">Put</LButton>

@@ -22,7 +22,7 @@
             <LHeading>Public Walls</LHeading>
             <template v-if="loaded">
 
-                <div class="flex flex-col lg:flex-row lg:space-x-3 mt-3 ">
+                <div class="flex flex-col lg:flex-row mt-3 lg:flex-wrap">
                     <WallListItem :wall="wall" v-for="wall in publicWalls" :key="wall.key" />
                 </div>
             </template>

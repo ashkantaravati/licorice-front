@@ -1,8 +1,8 @@
 <template >
     <div v-if="locked">
         <LHeading>Unlock Your Cube</LHeading>
-        <LTextBox v-model="passphrase" label="Enter Passphrase"></LTextBox>
-        <LButton password @click="unlock">
+        <LTextBox password v-model="passphrase" label="Enter Passphrase"></LTextBox>
+        <LButton  @click="unlock">
             Unlock
         </LButton>
     </div>
@@ -10,11 +10,11 @@
         
         <LHeading>Inside Your Cube</LHeading>
         <template v-if="loaded">
-            <span v-if="cube.cards.length===0"></span>
+            <span v-if="cube.cards.length===0">You haven't received any cards yet.</span>
             <CardItem class="my-4" v-for="card in cube.cards" :key="card.id" :card="card"></CardItem>
         </template>
         <template v-else>
-            <span>You haven't received any cards yet.</span>
+            <span>Loading...</span>
         </template>
         
     </div>
@@ -27,7 +27,7 @@ import { api } from '../utils';
 import { string } from 'vue-types';
 
 const locked = ref(true);
-
+const loaded = ref(false);
 const passphrase = ref("")
 
 const props = defineProps({
@@ -44,7 +44,7 @@ const unlock = () => {
             key: props.cubeId,
             passphrase: passphrase.value
         };
-        api.postJSON("/api/cubes/unlock", credentials).then(response => cube.value = response).then(() => locked.value = false)
+        api.postJSON("/api/cubes/unlock", credentials).then(response => cube.value = response).then(() => locked.value = false).then(()=>loaded.value= true)
     }
 }
 </script>

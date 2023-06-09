@@ -7,7 +7,7 @@
         <LTextBox v-model="newWall.title" label="Wall Title" />
         <LTextBox v-model="newWall.creator" label="Your Name" />
         <!-- <LTextBox v-model="newWall.creatorEmail" label="Your Email" /> -->
-        <Textarea v-model="newWall.descriptions" label="Wall Descriptions" />
+        <LTextarea v-model="newWall.descriptions" label="Wall Descriptions" />
 
     </div>
     <div class="flex justify-center">
