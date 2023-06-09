@@ -16,30 +16,36 @@ const routes = [
         path: "overview",
         name: "wallOverview",
         component: () => import("./views/WallOverview.vue"),
+        props: true 
       },
       {
         path: "join",
         name: "joinWall",
         component: () => import("./views/JoinWall.vue"),
+        props: true 
+
+      },
+      {
+        path: "cube/:cubeId",
+        component: () => import("./views/Cube.vue"),
+        children:[
+          {
+            path: "inside",
+            name: "insideCube",
+            component: () => import("./views/CubeInside.vue"),
+            props: true 
+          },
+          {
+            path: "put/:name",
+            name: "putCard",
+            component: () => import("./views/PutCard.vue"),
+            props: true 
+          },
+        ]
       },
     ]
   },
-  {
-    path: "/cube/:cubeId",
-    component: () => import("./views/Cube.vue"),
-    children:[
-      {
-        path: "inside",
-        name: "insideCube",
-        component: () => import("./views/CubeInside.vue"),
-      },
-      {
-        path: "put",
-        name: "putCard",
-        component: () => import("./views/PutCard.vue"),
-      },
-    ]
-  },
+
 
 
 ];

@@ -1,9 +1,9 @@
 <template lang="">
     <div >
         <LHeading>
-            Putting a card in {{buddyName}}'s Cube'
+            Putting a card in {{name}}'s Cube
         </LHeading>
-        <LTextBox textarea label="Your Message"></LTextBox>
+        <Textarea v-model="cardContent" label="Your Message"></Textarea>
         <div class="flex justify-center">
 
             <LButton @click="submitCard">Put</LButton>
@@ -13,14 +13,23 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { string } from 'vue-types';
+import { api } from '../utils';
 
 const router = useRouter()
 
-const buddyName = ref("Ashkan")
+const props = defineProps({
+    wallId: string(),
+    cubeId: string(),
+    name:string()
+});
+const cardContent = ref("");
 const submitCard = (function () {
-    // send POST request to the server
-    // if successful, navigate to wall.
-    router.push({name:"wallOverview",params:{wallId:1}});
+    const payload = { cubeKey: props.cubeId, content: cardContent.value }
+    api.postJSON("/api/cards", payload).then(() => {
+
+        router.push({ name: "wallOverview", params: { wallId: props.wallId } });
+    })
 });
 </script>
 <style lang="">

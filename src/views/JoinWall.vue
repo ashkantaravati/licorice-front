@@ -6,9 +6,9 @@
         </LHeading>
         <div class="flex flex-col">
         
-        <LTextBox v-model="newCube.name" label="Your Name" />
-        <LTextBox v-model="newCube.passphrase" label="Your Desired Passphrase" />
-        <LTextBox v-model="newCube.passphraseConfirmation" label="Confirm Passphrase" />
+        <LTextBox id="name" v-model="form.name" label="Your Name" />
+        <LTextBox id="passphrase" password v-model="form.passphrase" label="Your Desired Passphrase" />
+        <LTextBox id="passphraseconf" password v-model="form.passphraseConfirmation" label="Confirm Passphrase" />
 
 
     </div>
@@ -20,19 +20,41 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { reactive,computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { string } from 'vue-types';
+import { api } from "../utils";
 
-const newCube = ref({
+const router = useRouter()
+const form = reactive({
     name:"",
     passphrase:"",
     passphraseConfirmation:""
 
 });
+const props = defineProps({
+  wallId:string()
+});
+
+const formIsValid = computed(()=>{
+    const f = form;
+    const noFieldIsEmpty = f.name.length>=3 && f.passphrase.length>=4;
+    const passphraseMatch = f.passphrase === f.passphraseConfirmation;
+
+    return noFieldIsEmpty && passphraseMatch;
+})
 
 const submitCube = (function () {
-    // send POST request to the server
-    // if successful, navigate to wall.
-    router.push({name:"wallOverview",params:{wallId:1}});
+    if(formIsValid.value === true ){
+        api.postJSON("/api/cubes",{...form,wallKey:props.wallId}).then(()=>{
+        router.push({name:"wallOverview",params:{wallId:props.wallId}});
+        })
+
+      
+    }
+    else{
+        alert("Form is Empty or Passphrase and passphrase confirmation do not match!")
+    }
 });
 </script>
 

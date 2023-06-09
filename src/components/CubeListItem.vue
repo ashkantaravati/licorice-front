@@ -6,8 +6,8 @@
             <div>Received {{ cube.cardCount }} Cards</div>
         </div>
         <div class="flex flex-col justify-center">
-            <LButton @click="$router.push({ name: 'putCard', params: { cubeId: cube.id } })" secondary>Put Card</LButton>
-            <LButton link @click="$router.push({ name: 'insideCube', params: { cubeId: cube.id } })">
+            <LButton @click="$router.push({ name: 'putCard', params: {name:cube.name,wallId:cube.wallKey,cubeId:cube.key} })" secondary>Put Card</LButton>
+            <LButton link @click="$router.push({ name: 'insideCube', params: {wallId:cube.wallKey,cubeId:cube.key} })">
                 Look Inside
             </LButton>
         </div>

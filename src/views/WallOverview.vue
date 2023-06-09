@@ -3,48 +3,40 @@
         <LHeading>
 {{wall.title}}'s Wall
         </LHeading>
+        <template v-if="loaded">
+
         <div class="flex justify-center">
 
-            <LButton @click="$router.push({ name: 'joinWall' ,params:{ wallId: wall.id }})">
+            <LButton @click="$router.push({ name: 'joinWall' ,params:{ wallId: props.wallId }})">
                 Join this Wall
             </LButton>
         </div>
         <div class="flex flex-col mt-3 ">
+            <span v-if="wall.cubes.length===0">
+            No buddy has put up their cube yet!
+            </span>
                 <CubeListItem :cube="cube" v-for="cube in wall.cubes" :key="cube.id" />
             </div>
+        </template>
+<template v-else>
+    <span>
 
+        Loading...
+    </span>
+</template>
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import CubeListItem from '../components/CubeListItem.vue'
+import { api } from "../utils";
 
-
-const wall = ref({
-    id:'qweqw-qwqw-qw',
-    title: "Harmony Gang", cubes: [
-        {
-            id: "asd-qwerty-2",
-            name: "Ashkan T",
-            cardCount: 3
-        },
-        {
-            id: "asd-qwerty-2",
-            name: "Maryam",
-            cardCount: 3
-        },
-        {
-            id: "asd-qwerty-2",
-            name: "Alireza",
-            cardCount: 3
-        },
-        {
-            id: "asd-qwerty-2",
-            name: "Sara",
-            cardCount: 3
-        }
-    ]
+const props = defineProps(["wallId"]);
+const wall = ref({})
+onMounted(() => {
+    api.getJSON(`/api/Walls/${props.wallId}`).then(result => wall.value = result).then(()=>loaded.value=true)
 })
+const loaded = ref(false);
 </script>
 <style lang="">
     
