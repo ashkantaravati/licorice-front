@@ -15,6 +15,9 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { string } from 'vue-types';
 import { api } from '../utils';
+import { useNotification } from "@kyvg/vue3-notification";
+
+const { notify } = useNotification()
 
 const router = useRouter()
 
@@ -27,7 +30,10 @@ const cardContent = ref("");
 const submitCard = (function () {
     const payload = { cubeKey: props.cubeId, content: cardContent.value }
     api.postJSON("/api/cards", payload).then(() => {
-
+        notify({
+                title: "Card Added Successfully!",
+                type: "success"
+            });
         router.push({ name: "wallOverview", params: { wallId: props.wallId } });
     })
 });

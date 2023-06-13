@@ -6,6 +6,7 @@ import LTextBox from "./components/LTextBox.vue";
 import LHeading from "./components/LHeading.vue";
 import LTextarea from "./components/LTextarea.vue";
 import { router } from "./router";
+import Notifications from '@kyvg/vue3-notification'
 
 createApp(App)
   .component("LButton", LButton)
@@ -13,6 +14,7 @@ createApp(App)
   .component("LHeading",LHeading)
   .component("LTextarea",LTextarea)
   .use(router)
+  .use(Notifications)
   .mount("#app");
 
   

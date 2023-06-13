@@ -19,11 +19,21 @@
 import { reactive } from 'vue';
 import { api } from '../utils';
 import { useRouter } from 'vue-router';
+import { useNotification } from "@kyvg/vue3-notification";
 
-const newWall = reactive({ title: "", creator: "", descriptions: "",isPublic:true })
+const { notify } = useNotification()
+
+
+const newWall = reactive({ title: "", creator: "", descriptions: "", isPublic: true })
 const router = useRouter();
-const submit=()=>{
-    api.postJSON("/api/Walls", newWall).then((wall)=>router.push({name:"wallOverview",params:{wallId:wall.key}}))
+const submit = () => {
+    api.postJSON("/api/Walls", newWall).then((wall) => {
+        notify({
+            title: "Wall Created Successfully!",
+            type: "success"
+        });
+        router.push({ name: "wallOverview", params: { wallId: wall.key } })
+    })
 }
 </script>
 <style lang="">

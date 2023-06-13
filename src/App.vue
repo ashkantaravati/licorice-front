@@ -11,6 +11,7 @@ import SiteHeader from './components/SiteHeader.vue'
    <main class="h-fit px-2 py-5">
       <RouterView class="my-10" />
    </main>
+   <notifications position="bottom left" />
 </template>
 
 <style>
