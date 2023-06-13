@@ -24,10 +24,12 @@ const classes = computed(() => ({
   'px-6 bg-pink-600 text-white': props.secondary && !props.link,
   'underline text-yellow-500 justify-center': props.link
 }))
+
+const emit = defineEmits(["click"])
 </script>
 
 <template>
-  <component :is="elementType" @click="$emit('click')" :class="[' font-light px-', classes]">
+  <component :is="elementType" @click="emit('click')" :class="[' font-light px-', classes]">
     <slot />
   </component>
 </template>
