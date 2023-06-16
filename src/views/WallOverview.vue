@@ -27,16 +27,14 @@
     </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
+import {  ref } from 'vue';
 import CubeListItem from '../components/CubeListItem.vue'
 import { api } from "../utils";
 
 const props = defineProps(["wallId"]);
 const wall = ref({})
-onMounted(() => {
-    api.getJSON(`/api/Walls/${props.wallId}`).then(result => wall.value = result).then(() => loaded.value = true)
-})
 const loaded = ref(false);
+api.getJSON(`/api/Walls/${props.wallId}`).then(result => wall.value = result).then(() => loaded.value = true)
 </script>
 <style lang="">
     

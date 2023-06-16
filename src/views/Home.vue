@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import {ref } from 'vue';
 import WallListItem from '../components/WallListItem.vue';
 import LButton from '../components/LButton.vue';
 import LTextBox from '../components/LTextBox.vue';
@@ -45,15 +45,10 @@ import LHeading from '../components/LHeading.vue';
 import { api } from "../utils";
 
 const wallKey = ref("")
-const getPublicWalls = () => {
-api.getJSON("/api/Walls?includePrivate=true").then(result=>publicWalls.value=result).then(()=>loaded.value=true)
-}
 const publicWalls = ref([])
 const loaded = ref(false);
+api.getJSON("/api/Walls?includePrivate=true").then(result=>publicWalls.value=result).then(()=>loaded.value=true)
 
-onMounted(()=>{
-    getPublicWalls();
-})
 </script>
   
 <style></style>
